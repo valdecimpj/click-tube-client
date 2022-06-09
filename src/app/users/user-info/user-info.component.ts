@@ -11,8 +11,10 @@ import { UsersService } from '../users.service';
 })
 export class UserInfoComponent implements OnInit {
   public userInfo?:UserShareableInformationModel
+  public resettingUser:boolean;
 
   constructor(private usersService:UsersService, private videosService:VideosService) {
+    this.resettingUser = false;
     this.usersService.onSessionsUserReset.subscribe(()=>this.refreshUserInfo());
     this.videosService.onVideosUpdated.subscribe(() => this.refreshUserInfo());
   }
@@ -30,6 +32,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   public resetSessionsUser(){
-    this.usersService.resetSessionsUserInformation();
+    this.resettingUser = true;
+    this.usersService.resetSessionsUserInformation().subscribe(() => this.resettingUser = false);
   }
 }

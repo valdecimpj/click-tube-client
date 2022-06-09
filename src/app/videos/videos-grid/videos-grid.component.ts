@@ -10,9 +10,14 @@ import { VideosService } from '../videos.service';
 })
 export class VideosGridComponent implements OnInit {
   public videos:VideoModel[];
+  public clickedVideoId:number;
+  public loadingVideos:boolean
+
   constructor(private videosService:VideosService, private usersService:UsersService) {
     this.videos = [];
+    this.loadingVideos = false;
     this.usersService.onSessionsUserReset.subscribe(()=>this.refreshVideos())
+    this.clickedVideoId = -1;
   }
 
   ngOnInit(): void {
@@ -20,11 +25,16 @@ export class VideosGridComponent implements OnInit {
   }
 
   public refreshVideos() {
-    this.videosService.getAllVideos().subscribe(listOfVideos => this.videos = listOfVideos);
+    this.loadingVideos = true;
+    this.videosService.getAllVideos().subscribe(listOfVideos => {
+      this.videos = listOfVideos
+      this.loadingVideos = false;
+    });
   }
 
   public clickVideo(video:VideoModel){
-    this.videosService.clickVideo(video);
+    this.clickedVideoId = video.id;
+    this.videosService.clickVideo(video).subscribe(()=>this.clickedVideoId = -1);
   }
 
 }

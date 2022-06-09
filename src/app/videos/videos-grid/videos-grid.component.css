@@ -5,3 +5,7 @@
 .imagem-cartao{
     min-height: 80;
 }
+
+.low-opacity{
+    opacity: 30%;
+}

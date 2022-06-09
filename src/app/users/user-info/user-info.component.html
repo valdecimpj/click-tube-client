@@ -1,7 +1,16 @@
 <div class="my-5">
     <div *ngIf="userInfo != undefined">
         <h3>Usuário: {{userInfo.name}}</h3>
-        <button (click)="resetSessionsUser()" class="btn btn-danger">Resetar usuário</button>
+        <button (click)="resetSessionsUser()" class="btn btn-danger w-100">
+            <div class="row">
+                <div class="col-2" [hidden]="!resettingUser">
+                    <object data="assets/spinner-1s-200px-white.svg" width="50px"></object>
+                </div>
+                <div class="col-10 m-auto">
+                    {{resettingUser? "Resetando usuário" : "Resetar usuário"}}
+                </div>
+            </div>
+        </button>
         <div class="my-2">
             <h5>Interesses:</h5>
             <div *ngFor="let interest of userInfo.interestPerTag.sort(sortTagsByInterest)">
