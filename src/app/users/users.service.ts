@@ -19,8 +19,10 @@ export class UsersService {
   }
 
   public resetSessionsUserInformation():Observable<void>{
-    let resetUserObservable = this.httpClient.delete<void>(`${environment.clickTubeServerAddress}/users`, {withCredentials:true});
-    resetUserObservable.subscribe(()=>this.onSessionsUserReset.emit())
-    return resetUserObservable;
+    return this.httpClient.delete<void>(`${environment.clickTubeServerAddress}/users`, {withCredentials:true})
+      .pipe(observable=>{
+        this.onSessionsUserReset.emit()
+        return observable;
+      });
   }
 }

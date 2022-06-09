@@ -19,11 +19,11 @@ export class VideosService {
   }
 
   public clickVideo(clickedVideo:VideoModel):Observable<void>{
-    let videoClickedObservable = this.httpClient.put<void>(`${environment.clickTubeServerAddress}/videos`, {clickedVideoId:clickedVideo.id}, {withCredentials:true})
-    videoClickedObservable.subscribe(() => {
-      this.onVideosUpdated.emit()
-      clickedVideo.views++;
-    })
-    return videoClickedObservable;
+    return this.httpClient.put<void>(`${environment.clickTubeServerAddress}/videos`, {clickedVideoId:clickedVideo.id}, {withCredentials:true})
+      .pipe(observable => {
+        this.onVideosUpdated.emit()
+        clickedVideo.views++;
+        return observable;
+      })
   }
 }
