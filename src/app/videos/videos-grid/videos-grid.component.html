@@ -13,7 +13,7 @@
 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-2 my-5">
     <div class="col" *ngFor="let video of videos">
         <div class="card clickable h-100" [style.opacity]="clickedVideoId == video.id ? '30%' : '100%'" (click)="clickVideo(video)">
-            <img [src]="'https://picsum.photos/100/80?random='+video.id" class="card-img-top imagem-cartao" alt="...">
+            <img [src]="'https://api.lorem.space/image?w=150&h=180&random='+video.id" class="card-img-top imagem-cartao" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{video.name}}</h5>
                 <p class="card-text">Visualizações: {{video.views}}</p>
