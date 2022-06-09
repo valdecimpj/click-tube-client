@@ -1,5 +1,10 @@
 # ClickTubeClient
 
+# Description
+This application was created as an avaliative activity during a college course on a discipline about artificial intelligence, specifically on the topic of recommendation systems.
+
+# Framework
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
 
 ## Development server
