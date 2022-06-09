@@ -17,6 +17,7 @@ export class VideosGridComponent implements OnInit {
     this.videos = [];
     this.loadingVideos = false;
     this.usersService.onSessionsUserReset.subscribe(()=>this.refreshVideos())
+    this.videosService.onVideosUpdated.subscribe(() => this.refreshVideos())
     this.clickedVideoId = -1;
   }
 
