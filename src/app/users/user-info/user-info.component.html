@@ -1,0 +1,20 @@
+<div class="my-5">
+    <div *ngIf="userInfo != undefined">
+        <h3>Usuário: {{userInfo.name}}</h3>
+        <button (click)="resetSessionsUser()" class="btn btn-danger">Resetar usuário</button>
+        <div class="my-2">
+            <h5>Interesses:</h5>
+            <div *ngFor="let interest of userInfo.interestPerTag.sort(sortTagsByInterest)">
+                <span class="badge text-bg-primary">{{interest.tagName}}</span>: {{interest.interestAmount | number:'1.0-0'}}
+            </div>
+        </div>
+        <div class="my-2">
+            <h5>Histórico de vídeos:</h5>
+            <ul>
+                <li *ngFor="let video of userInfo.userVideoHistory.reverse()">
+                    {{video.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  clickTubeServerAddress:"https://click-tube-server.herokuapp.com"
 };
