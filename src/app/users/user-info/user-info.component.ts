@@ -33,6 +33,8 @@ export class UserInfoComponent implements OnInit {
 
   public resetSessionsUser(){
     this.resettingUser = true;
-    this.usersService.resetSessionsUserInformation().subscribe(() => this.resettingUser = false);
+    let resetUserSessionConnectable = this.usersService.resetSessionsUserInformation();
+    resetUserSessionConnectable.subscribe(() => this.resettingUser = false);
+    resetUserSessionConnectable.connect();
   }
 }

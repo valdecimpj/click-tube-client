@@ -34,7 +34,9 @@ export class VideosGridComponent implements OnInit {
 
   public clickVideo(video:VideoModel){
     this.clickedVideoId = video.id;
-    this.videosService.clickVideo(video).subscribe(()=>this.clickedVideoId = -1);
+    var clickVideoConnectable = this.videosService.clickVideo(video);
+    clickVideoConnectable.subscribe(()=>this.clickedVideoId = -1);
+    clickVideoConnectable.connect();
   }
 
 }
